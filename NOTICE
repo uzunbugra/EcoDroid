@@ -1,0 +1,11 @@
+EcoDroid
+Copyright 2026 Buğra Uzun and EcoDroid contributors
+
+This product is licensed under the Apache License, Version 2.0 (see LICENSE).
+
+EcoDroid is derived from Avo (https://github.com/nizwar/avo),
+Copyright 2026 Avo contributors, licensed under the Apache License 2.0, with
+engine crates under the BSD 3-Clause License. Avo's own NOTICE file is kept
+alongside its code once imported, and its attributions apply to that code.
+
+Android is a trademark of Google LLC.

@@ -1,0 +1,120 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # ===========================================================================
+  # Docs: Markdown lint + link check (always runs)
+  # ===========================================================================
+  docs:
+    name: Docs
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Lint Markdown
+        run: npx --yes markdownlint-cli2@0.18.1 "**/*.md" "#vendor" "#upstream-audit"
+
+      - name: Check links
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: --no-progress --exclude-path vendor --exclude-path upstream-audit "./**/*.md"
+          fail: true
+
+  # ===========================================================================
+  # Rust engine: fmt, clippy, tests, licenses/advisories
+  # Skipped until the engine workspace is in the tree.
+  # ===========================================================================
+  rust:
+    name: Rust
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Detect Rust workspace
+        id: detect
+        run: |
+          if [ -f engine/hvf/Cargo.toml ]; then echo "present=true" >> "$GITHUB_OUTPUT"; fi
+
+      - uses: dtolnay/rust-toolchain@stable
+        if: steps.detect.outputs.present == 'true'
+        with:
+          components: rustfmt, clippy
+
+      - name: Format
+        if: steps.detect.outputs.present == 'true'
+        working-directory: engine/hvf
+        run: cargo fmt --all -- --check
+
+      - name: Clippy
+        if: steps.detect.outputs.present == 'true'
+        working-directory: engine/hvf
+        run: cargo clippy --all-targets -- -D warnings
+
+      - name: Test
+        if: steps.detect.outputs.present == 'true'
+        working-directory: engine/hvf
+        run: cargo test
+
+      - name: Licenses and advisories
+        if: steps.detect.outputs.present == 'true'
+        uses: EmbarkStudios/cargo-deny-action@v2
+        with:
+          manifest-path: engine/hvf/Cargo.toml
+
+  # ===========================================================================
+  # macOS app: generate the Xcode project and run the test suite.
+  # Skipped until the host app is in the tree.
+  # ===========================================================================
+  macos:
+    name: macOS build
+    runs-on: macos-26
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Detect host app
+        id: detect
+        run: |
+          if [ -f host/project.yml ] && [ -f Makefile ]; then echo "present=true" >> "$GITHUB_OUTPUT"; fi
+
+      - name: Install tools
+        if: steps.detect.outputs.present == 'true'
+        run: brew install xcodegen cmake ninja
+
+      - uses: dtolnay/rust-toolchain@stable
+        if: steps.detect.outputs.present == 'true'
+
+      - name: Test
+        if: steps.detect.outputs.present == 'true'
+        run: make test
+
+  # ===========================================================================
+  # Single required check for branch rules
+  # ===========================================================================
+  ci-ok:
+    name: CI OK
+    if: always()
+    needs: [docs, rust, macos]
+    runs-on: ubuntu-latest
+    steps:
+      - name: All jobs passed
+        run: |
+          echo '${{ toJSON(needs) }}' | jq -e 'all(.[]; .result == "success" or .result == "skipped")'

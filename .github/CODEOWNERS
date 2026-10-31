@@ -1,0 +1,4 @@
+# Every change needs the maintainer's review. Branch rules on `main` require
+# a code-owner approval, so only @uzunbugra can approve merges there.
+
+* @uzunbugra

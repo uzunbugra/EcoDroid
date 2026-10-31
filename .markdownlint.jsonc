@@ -1,0 +1,8 @@
+{
+  // Long lines are fine in prose and tables.
+  "MD013": false,
+  // Allow repeated headings in different sections (e.g. CHANGELOG "Added").
+  "MD024": { "siblings_only": true },
+  // The PR template starts with a section heading on purpose.
+  "MD041": false
+}
