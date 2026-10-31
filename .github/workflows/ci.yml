@@ -130,14 +130,15 @@ jobs:
       - uses: dtolnay/rust-toolchain@stable
         if: steps.detect.outputs.present == 'true'
 
-      # Same as `make test`, minus suites that need a real Android guest, a
-      # camera, or tight timing that shared runners cannot give. They still
-      # run locally with `make test`.
+      # Same as `make test`, but serial: many suites assert on timing, and
+      # parallel runs on a shared runner miss those deadlines at random. Suites
+      # that need a real Android guest or a camera are skipped; they still run
+      # locally with `make test`.
       - name: Test
         if: steps.detect.outputs.present == 'true'
         run: |
-          SKIP='ADBForwarderTests|CameraFeedTests|DeadlineTests|AutoPauseDaemonTests'
-          (cd host/AvoKit && swift test --skip "$SKIP")
+          SKIP='ADBForwarderTests|CameraFeedTests'
+          (cd host/AvoKit && swift test --no-parallel --skip "$SKIP")
           (cd vendor/avo_kit && swift test)
 
   # ===========================================================================
