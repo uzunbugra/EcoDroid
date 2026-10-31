@@ -58,15 +58,17 @@ jobs:
         with:
           components: rustfmt, clippy
 
-      - name: Format
-        if: steps.detect.outputs.present == 'true'
-        working-directory: engine/hvf
-        run: cargo fmt --all -- --check
+      # Upstream Avo code is not rustfmt-formatted; reformatting it would make
+      # every upstream merge conflict. Only EcoDroid's own crates are checked.
+      - name: Format (EcoDroid crates)
+        if: steps.detect.outputs.present == 'true' && hashFiles('engine/eco/**/*.rs') != ''
+        run: rustfmt --check --edition 2021 $(git ls-files 'engine/eco/*.rs')
 
+      # Advisory for upstream code: warnings are shown but do not fail CI.
       - name: Clippy
         if: steps.detect.outputs.present == 'true'
         working-directory: engine/hvf
-        run: cargo clippy --all-targets -- -D warnings
+        run: cargo clippy --all-targets
 
       - name: Test
         if: steps.detect.outputs.present == 'true'

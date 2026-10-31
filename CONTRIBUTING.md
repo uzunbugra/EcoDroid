@@ -46,10 +46,13 @@ Types: `feat fix docs test chore refactor perf ci build`.
 Run these before pushing (they are the same checks CI runs):
 
 ```bash
-# Rust (once the engine is in the tree)
-cargo fmt --all -- --check
-cargo clippy --all-targets -- -D warnings
-cargo test
+# Rust engine (from engine/hvf)
+cargo clippy --all-targets
+AVO_VMM_MUTE=1 cargo test
+cargo deny --manifest-path engine/hvf/Cargo.toml check   # from the repo root
+
+# EcoDroid's own crates (engine/eco) must also be rustfmt-clean.
+# Upstream Avo code is left unformatted so upstream merges stay clean.
 
 # Markdown
 npx markdownlint-cli2 "*.md" ".github/**/*.md" "docs/security-audit.md"
