@@ -1,0 +1,25 @@
+<a class="skip-link" href="#main">{{t:common.skip}}</a>
+<header class="site-header" data-header>
+  <div class="wrap header-inner">
+    <a class="brand" href="{{v:homeHref}}">
+      <img src="{{v:root}}assets/img/avo-mark.svg" alt="" width="28" height="28">
+      <span class="brand-name">Avo</span>
+      <span class="visually-hidden">{{t:common.homeLink}}</span>
+    </a>
+    <nav class="site-nav" id="site-nav" aria-label="{{a:nav.label}}" data-nav>
+      <ul>
+{{h:navItems}}
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <a class="lang-switch" href="{{v:langHref}}" hreflang="{{v:otherLang}}" lang="{{v:otherLang}}">
+        <span class="visually-hidden">{{t:common.langLabel}}: </span><span class="lang-long">{{t:common.langOther}}</span><span class="lang-short" aria-hidden="true">{{t:common.langOtherShort}}</span>
+      </a>
+{{h:headerAction}}
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-nav-toggle data-close-label="{{a:common.closeMenu}}" hidden>
+        <span class="nav-toggle-bars" aria-hidden="true"></span>
+        <span class="visually-hidden" data-label-open>{{t:common.menu}}</span>
+      </button>
+    </div>
+  </div>
+</header>

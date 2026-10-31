@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleDisplayName</key>
+	<string>Avo</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIconName</key>
+	<string>AppIcon</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>Avo</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>$(MARKETING_VERSION)</string>
+	<key>CFBundleVersion</key>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>LSApplicationCategoryType</key>
+	<string>public.app-category.utilities</string>
+	<key>LSMinimumSystemVersion</key>
+	<string>$(MACOSX_DEPLOYMENT_TARGET)</string>
+	<key>NSHumanReadableCopyright</key>
+	<string>Avo contributors. Apache License 2.0.</string>
+	<!-- macOS holds Avo.app responsible for its helpers: the engine records
+	     from the microphone while Android records (AvoDaemon asks first). -->
+	<!-- Android's data on an external drive: the daemon (Avo.app is held
+	     responsible) reads and writes it, and macOS asks once. -->
+	<key>NSRemovableVolumesUsageDescription</key>
+	<string>Android's data can be kept on an external drive (Settings › Storage › Location). Avo reads and writes it there while Android runs.</string>
+	<!-- The Mac's Bluetooth devices for Android (MacBluetoothBridge): the daemon
+	     scans while Android's Bluetooth is on; Avo.app is held responsible. -->
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>With Bluetooth on in Android, its apps find and use the Bluetooth devices this Mac sees, like watches, sensors and beacons.</string>
+	<!-- The daemon runs the Mac's camera for Android (CameraFeed), and TCC
+	     holds Avo.app responsible: without this string macOS kills the daemon
+	     when it asks for the camera. -->
+	<key>NSCameraUsageDescription</key>
+	<string>Android apps that use the camera, like video calls and scanners, see this Mac's camera while they use it.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Android apps that record, like voice notes and calls, hear this Mac's microphone while they record.</string>
+	<key>NSPrincipalClass</key>
+	<string>NSApplication</string>
+	<!-- Avo's own updates (Sparkle; Avo/AppUpdater.swift, docs/releasing.md).
+	     The feed is the appcast.xml of the latest GitHub release (never a
+	     pre-release): each release carries one, made by generate_appcast
+	     with the update key in the release Mac's Keychain, whose public half
+	     is SUPublicEDKey. Sparkle installs a DMG whose signature is valid for
+	     that key, or whose app has this app's Developer ID. Never remove
+	     SUPublicEDKey: Sparkle refuses an update that drops it, and without a
+	     key it does not start. Updates run only in a Developer ID build. -->
+	<key>SUFeedURL</key>
+	<string>https://github.com/nizwar/avo/releases/latest/download/appcast.xml</string>
+	<key>SUPublicEDKey</key>
+	<string>W/SKL81r8nkZRC+f1CYNMK2uhNWWWbRmHhHFarxIG9M=</string>
+	<!-- On by default, without Sparkle's own question at the second launch;
+	     Settings › About turns it off. Once a day. -->
+	<key>SUEnableAutomaticChecks</key>
+	<true/>
+	<key>SUScheduledCheckInterval</key>
+	<integer>86400</integer>
+	<key>CFBundleLocalizations</key>
+	<array>
+		<string>en</string>
+		<string>id</string>
+	</array>
+	<!-- avo-control-panel://fingerprints opens that pane (an app window's
+	     Manage Fingerprints…; AvoKit's ControlPanelLink). -->
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>$(PRODUCT_BUNDLE_IDENTIFIER).control-panel</string>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>avo-control-panel</string>
+			</array>
+		</dict>
+	</array>
+	<!-- Spec §3: double-click .apk, .xapk, .apkm or .apks to install. -->
+	<key>CFBundleDocumentTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeName</key>
+			<string>Android Package</string>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>com.android.package-archive</string>
+				<string>$(AVO_BUNDLE_ID_PREFIX).xapk</string>
+				<string>$(AVO_BUNDLE_ID_PREFIX).apkm</string>
+				<string>$(AVO_BUNDLE_ID_PREFIX).apks</string>
+			</array>
+		</dict>
+	</array>
+	<key>UTImportedTypeDeclarations</key>
+	<array>
+		<dict>
+			<key>UTTypeIdentifier</key>
+			<string>com.android.package-archive</string>
+			<key>UTTypeDescription</key>
+			<string>Android Package</string>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.zip-archive</string>
+			</array>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>apk</string>
+				</array>
+				<key>public.mime-type</key>
+				<array>
+					<string>application/vnd.android.package-archive</string>
+				</array>
+			</dict>
+		</dict>
+	</array>
+	<key>UTExportedTypeDeclarations</key>
+	<array>
+		<dict>
+			<key>UTTypeIdentifier</key>
+			<string>$(AVO_BUNDLE_ID_PREFIX).xapk</string>
+			<key>UTTypeDescription</key>
+			<string>Android Package Bundle (XAPK)</string>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.zip-archive</string>
+			</array>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>xapk</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeIdentifier</key>
+			<string>$(AVO_BUNDLE_ID_PREFIX).apkm</string>
+			<key>UTTypeDescription</key>
+			<string>Android Package Bundle (APKM)</string>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.zip-archive</string>
+			</array>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>apkm</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeIdentifier</key>
+			<string>$(AVO_BUNDLE_ID_PREFIX).apks</string>
+			<key>UTTypeDescription</key>
+			<string>Android Split APK Set</string>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.zip-archive</string>
+			</array>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>apks</string>
+				</array>
+			</dict>
+		</dict>
+	</array>
+</dict>
+</plist>

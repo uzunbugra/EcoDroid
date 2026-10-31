@@ -1,0 +1,2 @@
+# Platform-signed com.avodroid.bridge runs in its own domain.
+user=_app seinfo=platform name=com.avodroid.bridge domain=avo_bridge type=app_data_file levelFrom=all
