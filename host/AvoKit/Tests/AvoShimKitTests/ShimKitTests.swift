@@ -119,7 +119,7 @@ private func solidImage(size: Int, argb: UInt32, insetTransparent: Int = 0) -> C
         #expect(ShimBuilder.cdhash(of: result.bundleURL) == result.cdhash)
 
         let info = try #require(NSDictionary(contentsOf: result.bundleURL.appending(path: "Contents/Info.plist")) as? [String: Any])
-        #expect(info["CFBundleIdentifier"] as? String == "com.avodroid.shim.org.fdroid.fdroid")
+        #expect(info["CFBundleIdentifier"] as? String == "com.ecodroid.shim.org.fdroid.fdroid")
         #expect(info["CFBundleName"] as? String == "F-Droid")
         #expect(info[AvoIdentifiers.shimPackageInfoKey] as? String == "org.fdroid.fdroid")
         #expect(info[AvoIdentifiers.shimHostAppInfoKey] as? String == "/Applications/Avo.app")

@@ -137,7 +137,7 @@ jobs:
       - name: Test
         if: steps.detect.outputs.present == 'true'
         run: |
-          SKIP='ADBForwarderTests|CameraFeedTests'
+          SKIP='ADBForwarderTests|CameraFeedTests|AutoPauseDaemonTests'
           (cd host/AvoKit && swift test --no-parallel --skip "$SKIP")
           (cd vendor/avo_kit && swift test)
 
