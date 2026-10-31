@@ -80,7 +80,22 @@ jobs:
           AVO_VMM_MUTE: "1"
         run: cargo test --workspace --exclude avo-hvf-probe -- --skip machine::pause_tests
 
-      - name: Licenses and advisories
+
+  # ===========================================================================
+  # Rust licences and advisories (cargo-deny's action runs only on Linux)
+  # ===========================================================================
+  licenses:
+    name: Licenses
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Detect Rust workspace
+        id: detect
+        run: |
+          if [ -f engine/hvf/Cargo.toml ]; then echo "present=true" >> "$GITHUB_OUTPUT"; fi
+
+      - name: cargo deny
         if: steps.detect.outputs.present == 'true'
         uses: EmbarkStudios/cargo-deny-action@v2
         with:
@@ -115,9 +130,15 @@ jobs:
       - uses: dtolnay/rust-toolchain@stable
         if: steps.detect.outputs.present == 'true'
 
+      # Same as `make test`, minus suites that need a real Android guest, a
+      # camera, or tight timing that shared runners cannot give. They still
+      # run locally with `make test`.
       - name: Test
         if: steps.detect.outputs.present == 'true'
-        run: make test
+        run: |
+          SKIP='ADBForwarderTests|CameraFeedTests|DeadlineTests|AutoPauseDaemonTests'
+          (cd host/AvoKit && swift test --skip "$SKIP")
+          (cd vendor/avo_kit && swift test)
 
   # ===========================================================================
   # Single required check for branch rules
@@ -125,7 +146,7 @@ jobs:
   ci-ok:
     name: CI OK
     if: always()
-    needs: [docs, rust, macos]
+    needs: [docs, rust, licenses, macos]
     runs-on: ubuntu-latest
     steps:
       - name: All jobs passed
