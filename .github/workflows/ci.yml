@@ -44,7 +44,7 @@ jobs:
   # ===========================================================================
   rust:
     name: Rust
-    runs-on: macos-15
+    runs-on: xcode-27
     steps:
       - uses: actions/checkout@v4
 
@@ -70,15 +70,15 @@ jobs:
         working-directory: engine/hvf
         run: cargo clippy --all-targets
 
-      # GitHub's macOS runners are VMs without nested virtualization, so the
-      # probe's test that boots a real guest (hv_vm_create) cannot run there.
-      # Run it locally: `cargo test -p avo-hvf-probe`.
+      # GitHub's macOS runners are VMs without nested virtualization, so tests
+      # that create a real VM (hv_vm_create → HV_UNSUPPORTED) cannot run there.
+      # Run them locally: `cargo test -p avo-hvf-probe` and `cargo test pause_tests`.
       - name: Test
         if: steps.detect.outputs.present == 'true'
         working-directory: engine/hvf
         env:
           AVO_VMM_MUTE: "1"
-        run: cargo test --workspace --exclude avo-hvf-probe
+        run: cargo test --workspace --exclude avo-hvf-probe -- --skip machine::pause_tests
 
       - name: Licenses and advisories
         if: steps.detect.outputs.present == 'true'
@@ -92,7 +92,8 @@ jobs:
   # ===========================================================================
   macos:
     name: macOS build
-    runs-on: macos-26
+    # Avo needs the Xcode 27 toolchain; Xcode 26.x crashes on AvoKeymapUI.
+    runs-on: xcode-27
     steps:
       - uses: actions/checkout@v4
         with:
@@ -103,15 +104,9 @@ jobs:
         run: |
           if [ -f host/project.yml ] && [ -f Makefile ]; then echo "present=true" >> "$GITHUB_OUTPUT"; fi
 
-      # The runner's default Xcode crashes on AvoKeymapUI; use the newest one.
-      - name: Select newest Xcode
+      - name: Toolchain
         if: steps.detect.outputs.present == 'true'
-        run: |
-          XCODE="$(ls -d /Applications/Xcode_*.app | sort -V | tail -1)"
-          echo "Using $XCODE"
-          sudo xcode-select -s "$XCODE"
-          xcodebuild -version
-          swift --version
+        run: xcodebuild -version && swift --version
 
       - name: Install tools
         if: steps.detect.outputs.present == 'true'
