@@ -121,10 +121,10 @@ sign() {
 # (avokit.AvoHostKit, avokit.AvoKit.resources): Avo's own code goes under
 # Avo's domain like the rest (the resource bundles are sealed with their app).
 plist_id() { /usr/libexec/PlistBuddy -c "Set :CFBundleIdentifier $2" "$1"; }
-plist_id "$APP/Contents/Frameworks/AvoHostKit.framework/Versions/A/Resources/Info.plist" com.avodroid.AvoHostKit
+plist_id "$APP/Contents/Frameworks/AvoHostKit.framework/Versions/A/Resources/Info.plist" com.ecodroid.AvoHostKit
 for resources in "$APP/Contents/Resources/AvoKit_AvoKit.bundle" \
                  "$APP/Contents/Library/Helpers/AvoDaemon.app/Contents/Resources/AvoKit_AvoKit.bundle"; do
-  [[ -f "$resources/Contents/Info.plist" ]] && plist_id "$resources/Contents/Info.plist" com.avodroid.AvoKit.resources
+  [[ -f "$resources/Contents/Info.plist" ]] && plist_id "$resources/Contents/Info.plist" com.ecodroid.AvoKit.resources
 done
 # A tool or library has no Info.plist to name it: its signature gets one,
 # keeping its entitlements and hardened runtime.
@@ -154,11 +154,11 @@ for lib in "$APP"/Contents/Resources/gfxstream/lib64/*.dylib "$APP"/Contents/Res
 done
 # Android's Bluetooth controller (build-bluetooth.sh): no release without it either.
 [[ -x "$APP/Contents/Resources/bluetooth/rootcanal" ]] || { echo "Avo.app has no Bluetooth controller (Resources/bluetooth)"; exit 1; }
-sign_as "$APP/Contents/Resources/bluetooth/rootcanal" com.avodroid.rootcanal
+sign_as "$APP/Contents/Resources/bluetooth/rootcanal" com.ecodroid.rootcanal
 [[ -d "$APP/Contents/Library/Shim/AvoShim.app" ]] && sign "$APP/Contents/Library/Shim/AvoShim.app" shim
 sign "$APP/Contents/Library/Helpers/AvoDaemon.app" daemon
-sign_as "$APP/Contents/MacOS/avoctl" com.avodroid.avoctl
-sign_as "$APP/Contents/MacOS/avo-vmm" com.avodroid.avo-vmm
+sign_as "$APP/Contents/MacOS/avoctl" com.ecodroid.avoctl
+sign_as "$APP/Contents/MacOS/avo-vmm" com.ecodroid.avo-vmm
 sign "$APP" app
 codesign --verify --deep --strict "$APP"
 echo "signed: $(/usr/libexec/PlistBuddy -c 'Print :CFBundleShortVersionString' "$APP/Contents/Info.plist") ($(/usr/libexec/PlistBuddy -c 'Print :CFBundleVersion' "$APP/Contents/Info.plist"))"
@@ -241,7 +241,7 @@ fi
 hdiutil detach "$MOUNT" -quiet
 
 # Launch Services would otherwise keep the build copies as candidates for
-# com.avodroid.emulator next to the installed app.
+# com.ecodroid.emulator next to the installed app.
 for app in "$DERIVED/Build/Products" "$STAGE"; do
   find "$app" -name "*.app" -type d -prune -exec "$LSREGISTER" -u {} \; 2>/dev/null || true
 done

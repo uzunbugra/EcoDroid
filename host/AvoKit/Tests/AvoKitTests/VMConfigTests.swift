@@ -182,7 +182,7 @@ let macMini8 = HostInfo(physicalMemoryBytes: 8 << 30, performanceCores: 4, effic
     @Test func shimBundleIdentifiersAreValid() {
         #expect(AvoIdentifiers.shimBundleIdentifier(for: "com.example.app") == "com.avodroid.shim.com.example.app")
         #expect(AvoIdentifiers.shimBundleIdentifier(for: "org.my_app.free") == "com.avodroid.shim.org.my-app.free")
-        #expect(AvoIdentifiers.package(fromShimBundleIdentifier: "com.avodroid.shim.com.example") == "com.example")
+        #expect(AvoIdentifiers.package(fromShimBundleIdentifier: "com.ecodroid.shim.com.example") == "com.example")
         // A shim made before com.avodroid still names its package.
         #expect(AvoIdentifiers.package(fromShimBundleIdentifier: "dev.avo.shim.com.example") == "com.example")
         #expect(AvoIdentifiers.package(fromShimBundleIdentifier: "com.other") == nil)
@@ -191,23 +191,23 @@ let macMini8 = HostInfo(physicalMemoryBytes: 8 << 30, performanceCores: 4, effic
     @Test func everyHelperIsUnderAvosDomain() {
         for identifier in [AvoIdentifiers.windowHost, AvoIdentifiers.daemonLabel, AvoIdentifiers.daemonMachService,
                            AvoIdentifiers.daemonBundleID, AvoIdentifiers.shimPrefix, AvoIdentifiers.logSubsystem] {
-            #expect(identifier.hasPrefix("com.avodroid"), "\(identifier)")
+            #expect(identifier.hasPrefix("com.ecodroid"), "\(identifier)")
         }
-        #expect(AvoIdentifiers.app == "com.avodroid.emulator")
+        #expect(AvoIdentifiers.app == "com.ecodroid.emulator")
         #expect(AvoIdentifiers.formerDaemonMachService == "dev.avo.daemon")
     }
 
     @Test func formerPreferencesMoveToTheirNewDomains() {
         let files = ["dev.avo.daemon.plist", "dev.avo.WindowHost.plist", "dev.avo.shim.com.dts.freefiremax.plist",
                      "dev.avo.shim.org.my-app.free.plist", "dev.avo.hub.plist", "dev.avo.hub.agent.plist",
-                     "dev.avo.shim..plist", "com.avodroid.emulator.plist", "dev.avo.shim.com.example.app.plist.lockfile"]
+                     "dev.avo.shim..plist", "com.ecodroid.emulator.plist", "dev.avo.shim.com.example.app.plist.lockfile"]
         let pairs = AvoIdentifiers.formerPreferenceDomains(preferenceFiles: files).map { "\($0.from) > \($0.to)" }
         #expect(pairs == [
-            "dev.avo.daemon > com.avodroid.daemon",
-            "dev.avo.WindowHost > com.avodroid.WindowHost",
-            "dev.avo.avoctl > com.avodroid.avoctl",
-            "dev.avo.shim.com.dts.freefiremax > com.avodroid.shim.com.dts.freefiremax",
-            "dev.avo.shim.org.my-app.free > com.avodroid.shim.org.my-app.free",
+            "dev.avo.daemon > com.ecodroid.daemon",
+            "dev.avo.WindowHost > com.ecodroid.WindowHost",
+            "dev.avo.avoctl > com.ecodroid.avoctl",
+            "dev.avo.shim.com.dts.freefiremax > com.ecodroid.shim.com.dts.freefiremax",
+            "dev.avo.shim.org.my-app.free > com.ecodroid.shim.org.my-app.free",
         ], "Avo Hub's dev.avo.hub domains are not Avo's to move")
     }
 

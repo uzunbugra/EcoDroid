@@ -2,11 +2,12 @@ import Foundation
 
 /// Bundle identifiers, launchd labels and Mach service names.
 ///
-/// The prefix is Avo's domain (avodroid.com). Change it here and in
+/// The prefix is EcoDroid's (Avo uses com.avodroid; a different prefix lets
+/// both apps live on one Mac without sharing a daemon or preferences). Change it here and in
 /// host/Config/Base.xcconfig (`AVO_BUNDLE_ID_PREFIX`); a unit test keeps the
 /// two in sync.
 public enum AvoIdentifiers {
-    public static let prefix = "com.avodroid"
+    public static let prefix = "com.ecodroid"
     /// The prefix of builds before 0.3.0 Preview 2. What Avo kept under it
     /// moves once (IdentifierMigration in Avo.app): the daemon's LaunchAgent,
     /// and the helpers' and App Shims' preferences.
@@ -14,7 +15,7 @@ public enum AvoIdentifiers {
 
     /// Avo.app: Control Panel and menu bar item. Its own identifier, apart
     /// from the prefix its helpers share (Base.xcconfig `AVO_APP_BUNDLE_ID`).
-    public static let app = "com.avodroid.emulator"
+    public static let app = "com.ecodroid.emulator"
     /// Avo.app's identifiers in earlier builds (`dev.avo.Avo`, then
     /// `emu.avo.droid` in one preview build): their preferences move to the
     /// new one at the first launch (ControlPanelDefaults).

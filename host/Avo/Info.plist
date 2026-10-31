@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>Avo</string>
+	<string>EcoDroid</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIconName</key>
@@ -15,7 +15,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>Avo</string>
+	<string>EcoDroid</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
@@ -47,7 +47,12 @@
 	<string>Android apps that record, like voice notes and calls, hear this Mac's microphone while they record.</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
-	<!-- Avo's own updates (Sparkle; Avo/AppUpdater.swift, docs/releasing.md).
+	<!-- EcoDroid: updates are OFF until EcoDroid publishes its own signed
+	     releases. The placeholder .invalid feed makes AppUpdate.readiness return
+	     .placeholderFeed, and the upstream Avo key is removed, so this build can
+	     never install Avo's releases. When EcoDroid signs releases, set its own
+	     appcast URL and SUPublicEDKey here.
+	     Upstream note: Avo's own updates (Sparkle; Avo/AppUpdater.swift, docs/releasing.md).
 	     The feed is the appcast.xml of the latest GitHub release (never a
 	     pre-release): each release carries one, made by generate_appcast
 	     with the update key in the release Mac's Keychain, whose public half
@@ -56,13 +61,11 @@
 	     SUPublicEDKey: Sparkle refuses an update that drops it, and without a
 	     key it does not start. Updates run only in a Developer ID build. -->
 	<key>SUFeedURL</key>
-	<string>https://github.com/nizwar/avo/releases/latest/download/appcast.xml</string>
-	<key>SUPublicEDKey</key>
-	<string>W/SKL81r8nkZRC+f1CYNMK2uhNWWWbRmHhHFarxIG9M=</string>
+	<string>https://updates.ecodroid.invalid/appcast.xml</string>
 	<!-- On by default, without Sparkle's own question at the second launch;
 	     Settings › About turns it off. Once a day. -->
 	<key>SUEnableAutomaticChecks</key>
-	<true/>
+	<false/>
 	<key>SUScheduledCheckInterval</key>
 	<integer>86400</integer>
 	<key>CFBundleLocalizations</key>

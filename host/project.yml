@@ -7,7 +7,7 @@
 #   Avo.app                                   Control Panel (SwiftUI)
 #     Contents/MacOS/Avo
 #     Contents/Library/Helpers/AvoDaemon.app  Runtime Daemon (LaunchAgent) + Menu Bar Item
-#     Contents/Library/LaunchAgents/com.avodroid.daemon.plist
+#     Contents/Library/LaunchAgents/com.ecodroid.daemon.plist
 #     Contents/Library/Shim/AvoShim.app       App Shim template, copied per Android app
 #     Contents/Frameworks/AvoWindowHost.framework   Window Host, loaded by every shim
 #     Contents/Resources/profiles/            device and keymap profiles
@@ -17,7 +17,7 @@
 
 name: Avo
 options:
-  bundleIdPrefix: com.avodroid
+  bundleIdPrefix: com.ecodroid
   developmentLanguage: en
   deploymentTarget:
     macOS: "15.0"

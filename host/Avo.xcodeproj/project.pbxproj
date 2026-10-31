@@ -53,7 +53,7 @@
 		5AF67682AFB60C03BCDA58C6 /* AvoHostKit in Frameworks */ = {isa = PBXBuildFile; productRef = 957B5B66D0F5E689DE4D838D /* AvoHostKit */; };
 		61B7BA2C35BBFCA906155177 /* HelpButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 620F07B134A6F78EB2D009F6 /* HelpButton.swift */; };
 		62538307D445FF200AE6E2A2 /* HazeTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A275DEF061CFBDBEF5CC62 /* HazeTheme.swift */; };
-		627A2FA9B391B3A272709765 /* com.avodroid.daemon.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 72EC3020F67F5E3A32BC3D88 /* com.avodroid.daemon.plist */; };
+		627A2FA9B391B3A272709765 /* com.ecodroid.daemon.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 72EC3020F67F5E3A32BC3D88 /* com.ecodroid.daemon.plist */; };
 		63C8EA7CB7DACF0E0EDC161A /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 32EDD9AC9A0DC88B6A25A322 /* Sparkle */; };
 		6755F96AA82D28645EF428A5 /* DaemonAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303350F925C8F3106A16A510 /* DaemonAgent.swift */; };
 		6954CBE6DC123FD17ACFFD9B /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903260C33E7D650A332BF9E4 /* Localization.swift */; };
@@ -212,7 +212,7 @@
 			dstPath = Contents/Library/LaunchAgents;
 			dstSubfolderSpec = 1;
 			files = (
-				627A2FA9B391B3A272709765 /* com.avodroid.daemon.plist in CopyFiles */,
+				627A2FA9B391B3A272709765 /* com.ecodroid.daemon.plist in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,7 +281,7 @@
 		6443F229E33272C0A1B90151 /* ScreenRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenRecorder.swift; sourceTree = "<group>"; };
 		65F7E2A3C00C21BDBF58BE20 /* ReportProblem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportProblem.swift; sourceTree = "<group>"; };
 		7041D0AA8B7A00CB09C30AC6 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		72EC3020F67F5E3A32BC3D88 /* com.avodroid.daemon.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = com.avodroid.daemon.plist; sourceTree = "<group>"; };
+		72EC3020F67F5E3A32BC3D88 /* com.ecodroid.daemon.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = com.ecodroid.daemon.plist; sourceTree = "<group>"; };
 		757FE7FE5E8552F4983486D2 /* WidgetPanels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetPanels.swift; sourceTree = "<group>"; };
 		75A225255260D6D6FA585B52 /* FrameRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameRouter.swift; sourceTree = "<group>"; };
 		76B7EBE203806538C8FDEE11 /* ShimMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimMain.swift; sourceTree = "<group>"; };
@@ -448,7 +448,7 @@
 		7BDDAFBF6FFB6597718A0D10 /* LaunchAgents */ = {
 			isa = PBXGroup;
 			children = (
-				72EC3020F67F5E3A32BC3D88 /* com.avodroid.daemon.plist */,
+				72EC3020F67F5E3A32BC3D88 /* com.ecodroid.daemon.plist */,
 			);
 			path = LaunchAgents;
 			sourceTree = "<group>";
