@@ -22,3 +22,42 @@ upstream-audit/
 .env
 *.p12
 *.mobileprovision
+
+# --- from upstream Avo ---
+# macOS
+.DS_Store
+
+# Editors
+.vscode/
+.idea/
+*.swp
+
+# Local build output: DerivedData, release staging, disk images and logs.
+build/
+*.dmg
+*.xcresult
+
+# Xcode / SwiftPM
+xcuserdata/
+*.xcuserstate
+DerivedData/
+.build/
+.swiftpm/
+host/Config/Local.xcconfig
+
+# Android
+guest/*/build/
+guest/samples/*/build/
+*.keystore
+local.properties
+
+# Rust (engine)
+target/
+
+# Python
+__pycache__/
+*.pyc
+
+# Local secrets
+.env
+.env.*

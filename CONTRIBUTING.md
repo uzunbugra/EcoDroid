@@ -52,7 +52,7 @@ cargo clippy --all-targets -- -D warnings
 cargo test
 
 # Markdown
-npx markdownlint-cli2 "**/*.md"
+npx markdownlint-cli2 "*.md" ".github/**/*.md" "docs/security-audit.md"
 ```
 
 ## 5. Ground rules for game compatibility

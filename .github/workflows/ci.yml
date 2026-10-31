@@ -28,13 +28,14 @@ jobs:
         with:
           node-version: 22
 
+      # Only EcoDroid's own docs; upstream Avo docs keep their own style.
       - name: Lint Markdown
-        run: npx --yes markdownlint-cli2@0.18.1 "**/*.md" "#vendor" "#upstream-audit"
+        run: npx --yes markdownlint-cli2@0.18.1 "*.md" ".github/**/*.md" "docs/security-audit.md"
 
       - name: Check links
         uses: lycheeverse/lychee-action@v2
         with:
-          args: --no-progress --exclude-path vendor --exclude-path upstream-audit "./**/*.md"
+          args: --no-progress "./*.md" "./docs/security-audit.md"
           fail: true
 
   # ===========================================================================

@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="{{v:lang}}">
+<head>
+{{> head}}
+</head>
+<body class="page page-home">
+{{> sprite}}
+{{> header}}
+<main id="main">
+
+  <!-- The slogan is split by the product: its first half on the left, its
+       second on the right, and Avo's own windows between them. The tabs
+       under the windows are added by reel.js; without it the library shows. -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="wrap hero-grid">
+      <h1 id="hero-title" class="hero-title">
+        <span class="hero-half hero-half-a">{{t:hero.titleA}}</span>
+        <span class="hero-half hero-half-b">{{t:hero.titleB}}</span>
+      </h1>
+      <div class="hero-stage" data-reel data-reel-label="{{a:hero.reelLabel}}" data-pause-label="{{a:hero.pause}}" data-play-label="{{a:hero.play}}">
+        <div class="reel">
+          <figure class="reel-item" id="reel-library" data-reel-item data-tab="{{a:hero.libraryTab}}">
+            <div class="window window-library" data-zoom>{{p:library|hero.libraryAlt|hero|eager}}</div>
+            <figcaption>{{t:hero.libraryCaption}}</figcaption>
+          </figure>
+          <figure class="reel-item" id="reel-play" data-reel-item data-tab="{{a:hero.playTab}}">
+            <div class="window window-game" data-zoom>{{p:game-play|hero.playAlt|hero}}</div>
+            <figcaption>{{t:hero.playCaption}}</figcaption>
+          </figure>
+          <figure class="reel-item" id="reel-keys" data-reel-item data-tab="{{a:hero.keysTab}}">
+            <div class="window window-game" data-zoom>{{p:game-keys|hero.keysAlt|hero}}</div>
+            <figcaption>{{t:hero.keysCaption}}</figcaption>
+          </figure>
+          <figure class="reel-item" id="reel-settings" data-reel-item data-tab="{{a:hero.settingsTab}}">
+            <div class="window window-settings" data-zoom>{{p:settings-graphics|hero.settingsAlt|hero}}</div>
+            <figcaption>{{t:hero.settingsCaption}}</figcaption>
+          </figure>
+        </div>
+      </div>
+      <div class="hero-copy">
+        <p class="hero-lede">{{t:hero.lede}}</p>
+{{h:heroCtas}}
+      </div>
+      <ul class="hero-facts">
+{{h:releaseFacts}}
+        <li>{{t:hero.factFree}}</li>
+        <li>{{t:hero.factPrivate}}</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Avo's own menu commands, scaled up into the section. commands.js adds
+       the search field and keeps one command open; without it every
+       command shows its sentence. -->
+  <section class="section commands" id="mac" aria-labelledby="mac-title">
+    <div class="wrap">
+      <header class="commands-head">
+        <h2 id="mac-title" class="h-sub">{{t:mac.title}}</h2>
+        <p class="lead">{{t:mac.lede}}</p>
+      </header>
+      <div class="command-menu" data-ui data-commands data-empty="{{a:mac.noResults}}">
+        <div class="command-search" data-command-search hidden>
+          <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-search"/></svg>
+          <label class="visually-hidden" for="command-search">{{t:mac.searchLabel}}</label>
+          <input id="command-search" type="search" placeholder="{{a:mac.searchPlaceholder}}" autocomplete="off" spellcheck="false" enterkeyhint="search">
+        </div>
+        <ul class="command-list" data-command-list>
+          <li class="command" data-terms="{{a:mac.switchTerms}}"><button class="command-row" type="button" aria-expanded="true" aria-controls="cmd-switch"><span class="command-name">{{t:mac.switchName}}</span><span class="command-keys" aria-hidden="true"><kbd>⌘</kbd><kbd>Tab</kbd></span><span class="visually-hidden">, Command Tab</span></button><p class="command-text" id="cmd-switch">{{t:mac.switchText}}</p></li>
+          <li class="command" data-terms="{{a:mac.gameTerms}}"><button class="command-row" type="button" aria-expanded="true" aria-controls="cmd-game"><span class="command-name">{{t:mac.gameName}}</span><span class="command-keys" aria-hidden="true"><kbd>⌘</kbd><kbd>G</kbd></span><span class="visually-hidden">, Command G</span></button><p class="command-text" id="cmd-game">{{t:mac.gameText}}</p></li>
+          <li class="command" data-terms="{{a:mac.keysTerms}}"><button class="command-row" type="button" aria-expanded="true" aria-controls="cmd-keys"><span class="command-name">{{t:mac.keysName}}</span><span class="command-keys" aria-hidden="true"><kbd>⇧</kbd><kbd>⌘</kbd><kbd>K</kbd></span><span class="visually-hidden">, Shift Command K</span></button><p class="command-text" id="cmd-keys">{{t:mac.keysText}}</p></li>
+          <li class="command" data-terms="{{a:mac.translateTerms}}"><button class="command-row" type="button" aria-expanded="true" aria-controls="cmd-translate"><span class="command-name">{{t:mac.translateName}}</span><span class="command-keys" aria-hidden="true"><kbd>⇧</kbd><kbd>⌘</kbd><kbd>T</kbd></span><span class="visually-hidden">, Shift Command T</span></button><p class="command-text" id="cmd-translate">{{t:mac.translateText}}</p></li>
+          <li class="command" data-terms="{{a:mac.shotTerms}}"><button class="command-row" type="button" aria-expanded="true" aria-controls="cmd-shot"><span class="command-name">{{t:mac.shotName}}</span><span class="command-keys" aria-hidden="true"><kbd>⇧</kbd><kbd>⌘</kbd><kbd>S</kbd></span><span class="visually-hidden">, Shift Command S</span></button><p class="command-text" id="cmd-shot">{{t:mac.shotText}}</p></li>
+          <li class="command" data-terms="{{a:mac.recordTerms}}"><button class="command-row" type="button" aria-expanded="true" aria-controls="cmd-record"><span class="command-name">{{t:mac.recordName}}</span><span class="command-keys" aria-hidden="true"><kbd>⇧</kbd><kbd>⌘</kbd><kbd>R</kbd></span><span class="visually-hidden">, Shift Command R</span></button><p class="command-text" id="cmd-record">{{t:mac.recordText}}</p></li>
+          <li class="command" data-terms="{{a:mac.locationTerms}}"><button class="command-row" type="button" aria-expanded="true" aria-controls="cmd-location"><span class="command-name">{{t:mac.locationName}}</span><span class="command-keys" aria-hidden="true"><kbd>⌥</kbd><kbd>⌘</kbd><kbd>L</kbd></span><span class="visually-hidden">, Option Command L</span></button><p class="command-text" id="cmd-location">{{t:mac.locationText}}</p></li>
+          <li class="command" data-terms="{{a:mac.perfTerms}}"><button class="command-row" type="button" aria-expanded="true" aria-controls="cmd-perf"><span class="command-name">{{t:mac.perfName}}</span><span class="command-keys" aria-hidden="true"><kbd>⌥</kbd><kbd>⌘</kbd><kbd>P</kbd></span><span class="visually-hidden">, Option Command P</span></button><p class="command-text" id="cmd-perf">{{t:mac.perfText}}</p></li>
+          <li class="command" data-terms="{{a:mac.pasteTerms}}"><button class="command-row" type="button" aria-expanded="true" aria-controls="cmd-paste"><span class="command-name">{{t:mac.pasteName}}</span><span class="command-keys" aria-hidden="true"><kbd>⌘</kbd><kbd>V</kbd></span><span class="visually-hidden">, Command V</span></button><p class="command-text" id="cmd-paste">{{t:mac.pasteText}}</p></li>
+        </ul>
+        <p class="command-empty" data-command-empty role="status" aria-live="polite"></p>
+      </div>
+      <div class="commands-foot">
+        <p>{{t:mac.also}}</p>
+        <p class="muted">{{t:mac.notYet}}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Input on the dark field, output on the green one: pick a key on the
+       left and its place lights up on the game. keys.js adds the switch
+       between the two screens; without it both show, every key explained. -->
+  <section class="games" id="gaming" aria-labelledby="games-title" data-keys data-tabs-label="{{a:games.tabsLabel}}">
+    <h2 id="games-title" class="games-title"><span class="games-title-a">{{t:games.titleA}}</span> <span class="games-title-b">{{t:games.titleB}}</span></h2>
+    <div class="games-input">
+      <p class="lead">{{t:games.lede}}</p>
+      <div class="keyset" id="keyset-play" data-keyset data-tab="{{a:games.playTab}}">
+        <h3 class="keyset-title">{{t:games.playTab}}</h3>
+        <ul class="key-list" aria-label="{{a:games.keysLabel}}">
+          <li><button class="key" type="button" aria-pressed="false" data-mark="hs-play-move"><kbd>{{t:hotspots.playMove.key}}</kbd><span>{{t:hotspots.playMove.text}}</span></button></li>
+          <li><button class="key" type="button" aria-pressed="false" data-mark="hs-play-look"><kbd>{{t:hotspots.playLook.key}}</kbd><span>{{t:hotspots.playLook.text}}</span></button></li>
+          <li><button class="key" type="button" aria-pressed="false" data-mark="hs-play-fire"><kbd>{{t:hotspots.playFire.key}}</kbd><span>{{t:hotspots.playFire.text}}</span></button></li>
+          <li><button class="key" type="button" aria-pressed="false" data-mark="hs-play-jump"><kbd>{{t:hotspots.playJump.key}}</kbd><span>{{t:hotspots.playJump.text}}</span></button></li>
+          <li><button class="key" type="button" aria-pressed="false" data-mark="hs-play-fps"><kbd>{{t:hotspots.playFps.key}}</kbd><span>{{t:hotspots.playFps.text}}</span></button></li>
+        </ul>
+      </div>
+      <div class="keyset" id="keyset-keys" data-keyset data-tab="{{a:games.keysTab}}">
+        <h3 class="keyset-title">{{t:games.keysTab}}</h3>
+        <ul class="key-list" aria-label="{{a:games.keysLabel}}">
+          <li><button class="key" type="button" aria-pressed="false" data-mark="hs-keys-add"><kbd>{{t:hotspots.keysAdd.key}}</kbd><span>{{t:hotspots.keysAdd.text}}</span></button></li>
+          <li><button class="key" type="button" aria-pressed="false" data-mark="hs-keys-templates"><kbd>{{t:hotspots.keysTemplates.key}}</kbd><span>{{t:hotspots.keysTemplates.text}}</span></button></li>
+          <li><button class="key" type="button" aria-pressed="false" data-mark="hs-keys-key"><kbd>{{t:hotspots.keysKey.key}}</kbd><span>{{t:hotspots.keysKey.text}}</span></button></li>
+          <li><button class="key" type="button" aria-pressed="false" data-mark="hs-keys-look"><kbd>{{t:hotspots.keysLook.key}}</kbd><span>{{t:hotspots.keysLook.text}}</span></button></li>
+          <li><button class="key" type="button" aria-pressed="false" data-mark="hs-keys-pad"><kbd>{{t:hotspots.keysPad.key}}</kbd><span>{{t:hotspots.keysPad.text}}</span></button></li>
+          <li><button class="key" type="button" aria-pressed="false" data-mark="hs-keys-mouse"><kbd>{{t:hotspots.keysMouse.key}}</kbd><span>{{t:hotspots.keysMouse.text}}</span></button></li>
+        </ul>
+      </div>
+      <p class="games-note">{{t:games.controller}}</p>
+    </div>
+    <div class="games-output">
+      <figure class="game-shot" data-shot="keyset-play">
+        <div class="window window-game" data-zoom>
+          {{p:game-play|games.shotPlayAlt|half}}
+          <span class="mark hs-play-move" data-mark-id="hs-play-move" aria-hidden="true"></span>
+          <span class="mark hs-play-look" data-mark-id="hs-play-look" aria-hidden="true"></span>
+          <span class="mark hs-play-fire" data-mark-id="hs-play-fire" aria-hidden="true"></span>
+          <span class="mark hs-play-jump" data-mark-id="hs-play-jump" aria-hidden="true"></span>
+          <span class="mark hs-play-fps" data-mark-id="hs-play-fps" aria-hidden="true"></span>
+        </div>
+      </figure>
+      <figure class="game-shot" data-shot="keyset-keys">
+        <div class="window window-game" data-zoom>
+          {{p:game-keys|games.shotKeysAlt|half}}
+          <span class="mark hs-keys-add" data-mark-id="hs-keys-add" aria-hidden="true"></span>
+          <span class="mark hs-keys-templates" data-mark-id="hs-keys-templates" aria-hidden="true"></span>
+          <span class="mark hs-keys-key" data-mark-id="hs-keys-key" aria-hidden="true"></span>
+          <span class="mark hs-keys-look" data-mark-id="hs-keys-look" aria-hidden="true"></span>
+          <span class="mark hs-keys-pad" data-mark-id="hs-keys-pad" aria-hidden="true"></span>
+          <span class="mark hs-keys-mouse" data-mark-id="hs-keys-mouse" aria-hidden="true"></span>
+        </div>
+      </figure>
+      <p class="games-status">{{t:games.status}} <span class="muted">{{t:games.shotNote}}</span></p>
+    </div>
+  </section>
+
+  <!-- Each statement holds its screen beside it while it is read. -->
+  <section class="section how" id="how" aria-labelledby="how-title">
+    <div class="wrap">
+      <h2 id="how-title" class="h-display">{{t:how.title}}</h2>
+      <ol class="story" data-story>
+        <li class="story-step">
+          <div class="story-text"><h3 class="h-sub">{{t:how.s1Title}}</h3><p>{{t:how.s1Text}}</p></div>
+          <figure class="story-figure"><div class="window window-settings" data-zoom>{{p:settings-android|how.s1Alt|story}}</div></figure>
+        </li>
+        <li class="story-step">
+          <div class="story-text"><h3 class="h-sub">{{t:how.s2Title}}</h3><p>{{t:how.s2Text}}</p></div>
+          <figure class="story-figure"><div class="window window-settings" data-zoom>{{p:settings-graphics|how.s2Alt|story}}</div></figure>
+        </li>
+        <li class="story-step">
+          <div class="story-text"><h3 class="h-sub">{{t:how.s3Title}}</h3><p>{{t:how.s3Text}}</p></div>
+          <figure class="story-figure"><div class="window window-settings" data-zoom>{{p:settings-privacy|how.s3Alt|story}}</div></figure>
+        </li>
+        <li class="story-step">
+          <div class="story-text"><h3 class="h-sub">{{t:how.s4Title}}</h3><p>{{t:how.s4Text}}</p><p class="more-link"><a class="text-link" href="{{v:blobUrl}}/docs/architecture.md">{{t:how.more}}<svg class="icon" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a></p></div>
+          <figure class="story-figure"><div class="window window-settings" data-zoom>{{p:settings-google|how.s4Alt|story}}</div></figure>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section req" id="requirements" aria-labelledby="req-title">
+    <div class="wrap">
+      <h2 id="req-title" class="h-display">{{t:req.title}}</h2>
+      <dl class="figures">
+        <div class="figure-item"><dt><span class="figure">{{t:req.chipFig}}</span><span class="figure-label">{{t:req.chipLabel}}</span></dt><dd>{{t:req.chipText}}</dd></div>
+        <div class="figure-item"><dt><span class="figure">{{t:req.osFig}}</span><span class="figure-label">{{t:req.osLabel}}</span></dt><dd>{{t:req.osText}}</dd></div>
+        <div class="figure-item"><dt><span class="figure">{{t:req.diskFig}}</span><span class="figure-label">{{t:req.diskLabel}}</span></dt><dd>{{t:req.diskText}}</dd></div>
+{{h:sizeFigure}}
+      </dl>
+    </div>
+  </section>
+
+  <section class="teaser" id="avo-hub" aria-labelledby="teaser-title">
+    <div class="wrap teaser-grid">
+      <div class="teaser-copy">
+        <h2 id="teaser-title" class="h-display">{{t:hubTeaser.title}}</h2>
+        <p class="lead">{{t:hubTeaser.text}}</p>
+        <p><a class="btn btn-secondary" href="{{v:hubHref}}">{{t:hubTeaser.link}}<svg class="icon" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a></p>
+      </div>
+      <figure class="teaser-shot"><div class="window window-hub" data-zoom>{{p:hub-overview|hubTeaser.alt|teaser}}</div></figure>
+    </div>
+  </section>
+
+  <div class="wrap duo">
+    <section class="section dev" id="developers" aria-labelledby="dev-title">
+      <h2 id="dev-title" class="h-sub">{{t:dev.title}}</h2>
+      <ul class="plain-list">
+        <li>{{t:dev.adb}}</li>
+        <li>{{t:dev.root}}</li>
+        <li>{{t:dev.source}}</li>
+      </ul>
+      <p class="link-row">
+        <a class="btn btn-secondary" href="{{v:githubUrl}}">{{t:dev.repo}}<svg class="icon" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a>
+        <a class="text-link" href="{{v:githubUrl}}#readme">{{t:dev.docs}}</a>
+      </p>
+    </section>
+    <section class="section support" id="support" aria-labelledby="support-title">
+      <h2 id="support-title" class="h-sub">{{t:support.title}}</h2>
+      <p>{{t:support.text}}</p>
+      <h3 class="list-title">{{t:support.channelsTitle}}</h3>
+{{h:supportChannels}}
+      <p class="muted">{{t:support.note}} {{t:support.thanks}}</p>
+    </section>
+  </div>
+
+  <section class="section faq" id="faq" aria-labelledby="faq-title">
+    <div class="wrap faq-grid">
+      <h2 id="faq-title" class="h-display faq-title">{{t:faq.title}}</h2>
+      <div class="faq-list">
+{{h:faqItems}}
+      </div>
+    </div>
+  </section>
+
+  <section class="cta" id="download" aria-labelledby="cta-title">
+    <div class="wrap cta-grid">
+      <div class="cta-copy">
+        <h2 id="cta-title" class="h-display">{{t:cta.title}}</h2>
+        <p class="lead">{{t:cta.text}}</p>
+{{h:ctaButtons}}
+      </div>
+      <div class="dmg" data-ui role="img" aria-label="{{a:cta.dmgAlt}}">
+        <div class="dmg-bar" aria-hidden="true"><span class="lights"><i></i><i></i><i></i></span><span class="dmg-name">{{v:dmgName}}</span></div>
+        <div class="dmg-body" aria-hidden="true">
+          {{p:dmg|cta.dmgAlt|dmg|decor}}
+          <img class="dmg-app" src="{{v:root}}assets/img/avo-icon-macos.svg" alt="" width="112" height="112" loading="lazy">
+          <span class="dmg-label dmg-label-app">{{t:cta.dmgApp}}</span>
+          <svg class="dmg-folder" viewBox="0 0 112 112" width="112" height="112"><path d="M14 30a7 7 0 0 1 7-7h22l8 8h40a7 7 0 0 1 7 7v4H14Z" fill="#3e8fd6"/><path d="M14 40a6 6 0 0 1 6-6h72a6 6 0 0 1 6 6v42a7 7 0 0 1-7 7H21a7 7 0 0 1-7-7Z" fill="#62adec"/><path d="M47 76l9-24 9 24m-14.6-8.5h11.2" fill="none" stroke="#2f78bd" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span class="dmg-label dmg-label-folder">{{t:cta.dmgFolder}}</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+{{> footer}}
+<dialog class="lightbox" data-lightbox aria-label="{{a:ui.lightbox}}" data-zoom-label="{{a:ui.zoom}}">
+  <div class="lightbox-scrim" data-lightbox-scrim></div>
+  <figure class="lightbox-figure" data-lightbox-figure>
+    <figcaption class="lightbox-caption" data-lightbox-caption></figcaption>
+  </figure>
+  <button class="lightbox-close" type="button" data-lightbox-close autofocus><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-close"/></svg><span class="visually-hidden">{{t:ui.close}}</span></button>
+</dialog>
+<script type="module" src="{{v:root}}assets/js/site.js?v={{v:jsVersion}}"></script>
+</body>
+</html>

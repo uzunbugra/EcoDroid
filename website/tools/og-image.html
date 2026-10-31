@@ -1,0 +1,67 @@
+<!doctype html>
+<!-- Template for the 1200x630 social preview images in src/assets/img/og/.
+     Render with headless Chrome, then convert to JPEG, for example:
+       "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --hide-scrollbars \
+         --allow-file-access-from-files --window-size=1200,630 --screenshot=og-en.png \
+         "file://$PWD/tools/og-image.html?lang=en"
+       sips -s format jpeg -s formatOptions 86 og-en.png --out src/assets/img/og/og-en.jpg
+     lang: en | id. page: avo (the default) | hub, for Avo Hub's page (its mark is in
+     tools/og-hub/). Files: og-en, og-id, og-hub-en, og-hub-id.
+     The card is the site's first screen in small: the slogan's two halves, a real
+     window between them, flat Avo colours, no gradient. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Avo social image</title>
+<style>
+  @font-face { font-family: 'Hubot Sans'; src: url('../src/assets/fonts/hubot-sans/hubot-sans.woff2') format('woff2'); font-weight: 200 900; font-stretch: 75% 125%; }
+  @font-face { font-family: 'Mona Sans'; src: url('../src/assets/fonts/mona-sans/mona-sans.woff2') format('woff2'); font-weight: 200 900; font-stretch: 75% 125%; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; width: 1200px; height: 630px; overflow: hidden; }
+  body {
+    position: relative;
+    background: #0a1108;
+    color: #f3f1e8;
+    font-family: 'Mona Sans', -apple-system, sans-serif;
+  }
+  .stage { position: absolute; right: 0; top: 0; bottom: 0; width: 600px; background: #223519; }
+  .window { position: absolute; left: 650px; top: 86px; width: 700px; border-radius: 14px; overflow: hidden; background: #0c120b; }
+  .window img { display: block; width: 100%; }
+  .brand { position: absolute; left: 64px; top: 56px; display: flex; align-items: center; gap: 14px; }
+  .brand img { width: 44px; height: 44px; }
+  .brand span { font: 700 32px/1 'Hubot Sans', sans-serif; font-stretch: 108%; letter-spacing: -0.01em; }
+  h1 { position: absolute; left: 64px; top: 160px; width: 510px; margin: 0; font: 700 56px/1 'Hubot Sans', sans-serif; font-stretch: 108%; letter-spacing: -0.03em; }
+  h1 span { display: block; }
+  h1 span + span { margin-top: 14px; color: #d8e8a7; }
+  p { position: absolute; left: 64px; bottom: 56px; width: 480px; margin: 0; color: #c5cdb9; font-size: 23px; line-height: 1.4; }
+</style>
+</head>
+<body>
+<div class="stage"></div>
+<div class="window"><img id="shot" src="../src/assets/img/screens/library-1080.jpg" alt=""></div>
+<div class="brand"><img id="brandMark" src="../src/assets/img/avo-mark.svg" alt=""><span id="brandName">Avo</span></div>
+<h1><span id="a"></span><span id="b"></span></h1>
+<p id="line"></p>
+<script>
+  const q = new URLSearchParams(location.search);
+  const lang = q.get('lang') || 'en';
+  const hub = q.get('page') === 'hub';
+  const text = (hub ? {
+    en: ['Your Android,', 'on your Mac.', 'Its screen, notifications, messages, calls and files, over a cable, Wi‑Fi or the internet.'],
+    id: ['Android kamu,', 'langsung di Mac.', 'Layar, notifikasi, pesan, panggilan, dan file-nya, lewat kabel, Wi‑Fi, atau internet.'],
+  } : {
+    en: ['Android at heart.', 'Mac to the core.', 'Android apps and games on your Mac, each in its own window. Free, for Apple silicon.'],
+    id: ['Jiwa Android,', 'rasa Mac.', 'Aplikasi dan game Android di Mac kamu, masing-masing di jendelanya sendiri. Gratis, untuk chip Apple.'],
+  })[lang];
+  if (hub) {
+    document.getElementById('brandMark').src = 'og-hub/avo-hub-mark.svg';
+    document.getElementById('brandName').textContent = 'Avo Hub';
+    document.getElementById('shot').src = '../src/assets/img/screens/hub-overview-1200.jpg';
+  }
+  document.documentElement.lang = lang;
+  document.getElementById('a').textContent = text[0];
+  document.getElementById('b').textContent = text[1];
+  document.getElementById('line').textContent = text[2];
+</script>
+</body>
+</html>

@@ -9,3 +9,41 @@ engine crates under the BSD 3-Clause License. Avo's own NOTICE file is kept
 alongside its code once imported, and its attributions apply to that code.
 
 Android is a trademark of Google LLC.
+
+----------------------------------------------------------------------
+Avo NOTICE (upstream, reproduced as required by the Apache License 2.0):
+
+Avo
+Copyright 2026 Avo contributors
+
+This product includes software developed by the Avo contributors and is
+licensed under the Apache License, Version 2.0 (see LICENSE). The engine
+crates in engine/hvf are licensed under the BSD 3-Clause License.
+
+Third-party components included in Avo.app:
+- Sparkle (MIT), https://sparkle-project.org
+- SwiftProtobuf (Apache License 2.0), https://github.com/apple/swift-protobuf
+- smoltcp (0BSD) and mio (MIT), used by avo-vmm
+- Hubot Sans and Mona Sans (SIL Open Font License 1.1), by GitHub
+- The GPU renderer in Contents/Resources/gfxstream, built from source by
+  scripts/build-gfxstream.sh: gfxstream (Apache License 2.0, the Android
+  Open Source Project, with headers under MIT-style licences), the Vulkan
+  loader (Apache License 2.0, Khronos) and MoltenVK (Apache License 2.0,
+  Khronos); their licences are in that folder's licenses/.
+- Android's Bluetooth controller in Contents/Resources/bluetooth, built from
+  source by scripts/build-bluetooth.sh: Root Canal (Apache License 2.0, the
+  Android Open Source Project, github.com/google/rootcanal) with fmt (MIT),
+  pdl (Apache License 2.0), protobuf (BSD 3-Clause), abseil (Apache License
+  2.0), gflags (BSD 3-Clause), OpenSSL (Apache License 2.0) and Rust crates
+  under MIT or Apache License 2.0; their licences are in that folder's
+  licenses/.
+
+Used at run time, not included:
+- AOSP Cuttlefish images (Apache License 2.0, with the Linux kernel under
+  GPL-2.0), downloaded by the user from Google's public build server.
+- The Android Emulator's netsimd, gfxstream and MoltenVK, only when a
+  developer's build lacks Avo's own or points Avo at them.
+- MindTheGapps (Google apps), downloaded only when the user asks for them.
+
+Android is a trademark of Google LLC. Device names in profiles/devices are used
+only so apps see a familiar device; they are not Avo branding.
