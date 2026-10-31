@@ -3422,7 +3422,7 @@ extension HostAgent {
 // MARK: - Links (Avo Links, guest/links: the links Android apps open, on the Mac)
 
 extension HostAgent {
-    static let linksPackage = "\(AvoIdentifiers.prefix).links"
+    static let linksPackage = "\(AvoIdentifiers.guestPrefix).links"
     /// Avo Links of the builds before 0.3.0 Preview 2, uninstalled once this
     /// one is in; the browser role it held goes to this one.
     static let formerLinksPackage = "\(AvoIdentifiers.formerPrefix).links"

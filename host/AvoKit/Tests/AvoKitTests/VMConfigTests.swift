@@ -180,8 +180,8 @@ let macMini8 = HostInfo(physicalMemoryBytes: 8 << 30, performanceCores: 4, effic
 
 @Suite struct IdentifierTests {
     @Test func shimBundleIdentifiersAreValid() {
-        #expect(AvoIdentifiers.shimBundleIdentifier(for: "com.example.app") == "com.avodroid.shim.com.example.app")
-        #expect(AvoIdentifiers.shimBundleIdentifier(for: "org.my_app.free") == "com.avodroid.shim.org.my-app.free")
+        #expect(AvoIdentifiers.shimBundleIdentifier(for: "com.example.app") == "com.ecodroid.shim.com.example.app")
+        #expect(AvoIdentifiers.shimBundleIdentifier(for: "org.my_app.free") == "com.ecodroid.shim.org.my-app.free")
         #expect(AvoIdentifiers.package(fromShimBundleIdentifier: "com.ecodroid.shim.com.example") == "com.example")
         // A shim made before com.avodroid still names its package.
         #expect(AvoIdentifiers.package(fromShimBundleIdentifier: "dev.avo.shim.com.example") == "com.example")
@@ -227,7 +227,7 @@ let macMini8 = HostInfo(physicalMemoryBytes: 8 << 30, performanceCores: 4, effic
         let paths = AvoPaths(home: URL(filePath: "/Users/someone-with-a-long-name"),
                              temporaryDirectory: URL(filePath: "/var/folders/ab/cdefghijklmnopqrstuvwxyz0000gn/T"))
         #expect(paths.shims.path == "/Users/someone-with-a-long-name/Applications/Android Apps")
-        #expect(paths.vsockSocket.path.hasSuffix("/T/com.avodroid/vsock.sock"))
+        #expect(paths.vsockSocket.path.hasSuffix("/T/com.ecodroid/vsock.sock"))
         try paths.validateSocketPaths()
     }
 

@@ -15,7 +15,7 @@ enum IdentityFeature {
     static let path = AvoIdentity.permissionsPath
     /// Beside `path` under a name SystemConfig skips (it reads `*.xml`).
     static let temporary = (AvoIdentity.permissionsPath as NSString).deletingLastPathComponent
-        + "/.\(AvoIdentifiers.prefix).feature.mac.xml.new"
+        + "/.\(AvoIdentifiers.guestPrefix).feature.mac.xml.new"
     static let separator = "--avo-feature--"
     /// After it: whether the former file (`AvoIdentity.formerPermissionsPath`) is there.
     static let formerSeparator = "--avo-former-feature--"

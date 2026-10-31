@@ -9,7 +9,7 @@ import Foundation
 
 public enum AndroidWidgets {
     /// Avo Widgets' package: its displays are the widget panels'.
-    public static let package = "\(AvoIdentifiers.prefix).widgets"
+    public static let package = "\(AvoIdentifiers.guestPrefix).widgets"
     /// The package of the builds before 0.3.0 Preview 2, uninstalled once
     /// this one is in (its widgets come back in this one's panels by themselves).
     public static let formerPackage = "\(AvoIdentifiers.formerPrefix).widgets"

@@ -8,6 +8,11 @@ import Foundation
 /// two in sync.
 public enum AvoIdentifiers {
     public static let prefix = "com.ecodroid"
+    /// The prefix of what lives inside Android: the identity feature
+    /// (AvoIdentity), the embedded helper apps (widgets, links) and the
+    /// Bridge Agent. Those are built into the image and the embedded helpers,
+    /// so they keep Avo's names; games that check for Avo still find it.
+    public static let guestPrefix = "com.avodroid"
     /// The prefix of builds before 0.3.0 Preview 2. What Avo kept under it
     /// moves once (IdentifierMigration in Avo.app): the daemon's LaunchAgent,
     /// and the helpers' and App Shims' preferences.

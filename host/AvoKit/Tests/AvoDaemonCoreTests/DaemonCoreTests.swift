@@ -881,7 +881,7 @@ struct Harness {
         #expect(joined.contains("--block path=/img/overlay_rooted.img,ro=true,id=avo_overlay")) // root checkbox
         #expect(joined.contains("--block path=/cfg.img,ro=true,id=avo_config"))
         #expect(joined.contains("vulkan=true"))
-        #expect(joined.contains("--vsock cid=3,uds-path=/tmp/T/com.avodroid/vsock.sock"))
+        #expect(joined.contains("--vsock cid=3,uds-path=/tmp/T/com.ecodroid/vsock.sock"))
         #expect(args.last == "/img/kernel")
 
         config.rooted = false
